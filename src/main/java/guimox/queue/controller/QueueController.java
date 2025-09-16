@@ -1,8 +1,8 @@
-package com.example.virtualqueue.controller;
+package guimox.queue.controller;
 
-import com.example.virtualqueue.service.QueueService;
-import com.example.virtualqueue.service.QueueProcessorService;
-import com.example.virtualqueue.service.AdminService;
+import guimox.queue.service.QueueService;
+import guimox.queue.service.QueueProcessorService;
+import guimox.queue.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +11,12 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ExecutionException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

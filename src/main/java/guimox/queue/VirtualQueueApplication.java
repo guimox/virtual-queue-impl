@@ -1,4 +1,4 @@
-package com.example.virtualqueue;
+package guimox.queue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

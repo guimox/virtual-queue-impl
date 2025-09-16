@@ -1,4 +1,4 @@
-package com.example.virtualqueue.service;
+package guimox.queue.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -12,11 +12,13 @@ public class QueueService {
     private static final String QUEUE_TOPIC = "ticket-queue";
     private static final String QUEUE_KEY = "queue:list";
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final StringRedisTemplate redisTemplate;
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    public QueueService(KafkaTemplate<String, String> kafkaTemplate, StringRedisTemplate redisTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+        this.redisTemplate = redisTemplate;
+    }
 
     public void joinQueue(String userId) {
         kafkaTemplate.send(QUEUE_TOPIC, userId);

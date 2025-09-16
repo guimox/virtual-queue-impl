@@ -1,4 +1,4 @@
-package com.example.virtualqueue.service;
+package guimox.queue.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -12,11 +12,14 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class AdminService {
-    @Autowired
-    private StringRedisTemplate redisTemplate;
 
-    @Autowired
-    private KafkaAdmin kafkaAdmin;
+    private final StringRedisTemplate redisTemplate;
+    private final KafkaAdmin kafkaAdmin;
+
+    public AdminService(StringRedisTemplate redisTemplate, KafkaAdmin kafkaAdmin) {
+        this.redisTemplate = redisTemplate;
+        this.kafkaAdmin = kafkaAdmin;
+    }
 
     public void clearRedisQueue() {
         redisTemplate.delete("queue:list");

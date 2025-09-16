@@ -1,4 +1,4 @@
-package com.example.virtualqueue.config;
+package guimox.queue.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.example.virtualqueue.service;
+package guimox.queue.service;
 
 import java.util.List;
 import java.util.Random;
@@ -13,15 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 @EnableAsync
 public class QueueProcessorService {
-    @Autowired
-    private QueueService queueService;
-
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final QueueService queueService;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     private volatile long lastSpeedMs = 1000;
     private final Random random = new Random();
     private final AtomicBoolean running = new AtomicBoolean(false);
+
+    public QueueProcessorService(QueueService queueService, KafkaTemplate<String, String> kafkaTemplate) {
+        this.queueService = queueService;
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     @Async
     public void processQueue(long delayMillis) {
